@@ -42,6 +42,11 @@ amdtoes6 --dir src --ignore libs/**/*.js
 
 If you want the indentation to be "fixed" then use the `--beautify` option which just runs the output through [jsbeautify](https://github.com/beautify-web/js-beautify).
 
+If you want to resolve requirejs aliases you can provide a key value map with the `--aliases` option.
+```sh
+amdtoes6 --dir src --aliases src/require.config.js
+```
+
 If a file cannot be compiled an message will be printed explaining the error and it will be skipped.
 
 ### Examples
@@ -159,12 +164,13 @@ import b from 'path/to/b';
 
   Options:
 
-    -h, --help          output usage information
-    -d --dir <dirname>  Use this option to specify a directory to compile.
-    -o --out <dirname>  If using the --dir option this specifies the output directory.
-    -i --ignore <glob>  If using the --dir options this specifies to exclude eg. libs/**/*
-    -g --glob [glob]    If using the --dir option, optionally specify the glob pattern to match for input files
-    -b --beautify       Run the output through jsbeautify (mainly useful for fixing indentation)
+    -h, --help              output usage information
+    -d --dir <dirname>      Use this option to specify a directory to compile.
+    -o --out <dirname>      If using the --dir option this specifies the output directory.
+    -i --ignore <glob>      If using the --dir options this specifies to exclude eg. libs/**/*
+    -g --glob [glob]        If using the --dir option, optionally specify the glob pattern to match for input files
+    -b --beautify           Run the output through jsbeautify (mainly useful for fixing indentation)
+    -a --aliases <filename> Use this option to provide a key value map with aliases that need to be resolved.
 
 ```
 

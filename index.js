@@ -73,11 +73,11 @@ function convert (source, options) {
 
         var modulePaths = moduleDeps.elements.map(function (node) {
 
-            var resolvedPath = options.requireConf && options.requireConf[ node.value ];
+            var resolvedPath = options.requireConf && options.aliases[ node.value ];
 
             if( resolvedPath )
             {
-                return  "'" + options.requireConf[ node.value ] + "'";
+                return  "'" + options.aliases[ node.value ] + "'";
             }
 
             return node.raw;
