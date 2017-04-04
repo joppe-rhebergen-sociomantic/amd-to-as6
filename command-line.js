@@ -22,6 +22,7 @@ program
     .option('-b --beautify',
             'Run the output through jsbeautify (mainly useful for fixing indentation)',
             false)
+    .option('-r --requireconfig <dirname>', 'Use this option to provide a require.js config file with aliases that need to be resolved.')
     .parse(process.argv);
 
 if (program.dir && !program.out) {
@@ -63,6 +64,12 @@ if (program.dir) {
     }
 }
 
+var requireConf;
+
+if ( program.requireconfig ) {
+    requireConf = require( program.requireconfig );
+}
+
 inputFiles.forEach(function (srcFile) {
 
     var filePath = program.dir ? path.join(program.dir, srcFile) : srcFile;
@@ -72,7 +79,8 @@ inputFiles.forEach(function (srcFile) {
 
     try {
         compiled = amdtoes6(context, {
-            beautify: program.beautify
+            beautify: program.beautify,
+            requireConf : requireConf
         });
     }
     catch (e) {

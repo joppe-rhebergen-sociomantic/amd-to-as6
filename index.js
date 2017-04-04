@@ -72,6 +72,14 @@ function convert (source, options) {
     if (hasDeps) {
 
         var modulePaths = moduleDeps.elements.map(function (node) {
+
+            var resolvedPath = options.requireConf && options.requireConf[ node.value ];
+
+            if( resolvedPath )
+            {
+                return  "'" + options.requireConf[ node.value ] + "'";
+            }
+
             return node.raw;
         });
 
